@@ -8,7 +8,7 @@ import PyInstaller.__main__
 import os
 import configparser
 
-path = 'C:/Users/Reitm/OneDrive/Desktop/QualtricsDownloader_V1.0'
+path = os.getcwd()
 # exename = 'QualtricsDownloader_V1.0'
 # run once to make initial spec script
 PyInstaller.__main__.run([

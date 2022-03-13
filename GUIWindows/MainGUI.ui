@@ -102,6 +102,98 @@
         </property>
        </widget>
       </item>
+      <item row="8" column="0">
+       <widget class="QPushButton" name="ChooseCsvFile_button">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Choose CSV file</string>
+        </property>
+        <property name="text">
+         <string>Choose CSV file</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLineEdit" name="CsvFileTxt">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Path to your CSV file</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QPushButton" name="LoadCsvFile_button">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Load CSV file</string>
+        </property>
+        <property name="text">
+         <string>Load CSV file</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QComboBox" name="ColumnNameTxt">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QPushButton" name="Plot_button">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Plot responses from downloaded file</string>
+        </property>
+        <property name="text">
+         <string>Plot</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="1">
        <widget class="QLineEdit" name="ConfigFileTxt">
         <property name="sizePolicy">
@@ -216,6 +308,11 @@
   <tabstop>ChooseOutput_button</tabstop>
   <tabstop>OutputDirectoryTxt</tabstop>
   <tabstop>DownloadQualtrics_button</tabstop>
+  <tabstop>ChooseCsvFile_button</tabstop>
+  <tabstop>CsvFileTxt</tabstop>
+  <tabstop>LoadCsvFile_button</tabstop>
+  <tabstop>ColumnNameTxt</tabstop>
+  <tabstop>Plot_button</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -299,12 +396,63 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ChooseCsvFile_button</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ChooseCsvFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>208</x>
+     <y>332</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>LoadCsvFile_button</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>LoadCsvFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>208</x>
+     <y>332</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Plot_button</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Plot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>208</x>
+     <y>640</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>470</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>CreateConfig()</slot>
   <slot>ChooseConfig()</slot>
   <slot>ChooseOutput()</slot>
   <slot>DownloadQualtrics()</slot>
+  <slot>ChooseCsvFile()</slot>
+  <slot>LoadCsvFile()</slot>
+  <slot>Plot()</slot>
   <slot>UpdateText()</slot>
  </slots>
 </ui>

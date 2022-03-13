@@ -21,7 +21,7 @@ PyInstaller.__main__.run([
 #  modify spec script to include UIs and SetupFiles
 
 # add the following to the spec script
-path  ='C:/Users/Reitm/Documents/Sling Health/QualtricsDownloader'
+path = os.getcwd()
 # folderstoadd = [
 #          (path +'/SetupFiles/*', "SetupFiles"), 
 #          (path +'/GUIWindows/*', "GUIWindows"),

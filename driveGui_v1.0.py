@@ -13,6 +13,7 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl
 
 import GQDinGUI
+import plot
 
 if getattr(sys, 'frozen', False):
     thisfolder = os.path.dirname(sys.executable)
@@ -104,6 +105,27 @@ class PrimaryUi(QtWidgets.QMainWindow):
             config["pastOD"]["OutputFolder"] = OutputFolder
             with open(thisfolder+'/SetupFiles/GuiMemory.txt', 'w') as outputfile:
                     config.write(outputfile)    
+
+    def ChooseCsvFile(self):
+        if str(self.CsvFileTxt.text()):
+            CsvFile,_ = dlog.getOpenFileName(None, "Select CSV File",str(self.CsvFileTxt.text())) # Ask for file
+        else:
+            CsvFile,_ = dlog.getOpenFileName(None, "Select CSV File", UserFolder) # Ask for file
+
+        CsvFile = str(CsvFile)
+        self.CsvFileTxt.setText(CsvFile)
+        return CsvFile
+
+    def LoadCsvFile(self):
+        CsvFile = str(self.CsvFileTxt.text())
+        CsvFile = CsvFile.replace(os.sep,'/')
+        self.ColumnNameTxt.clear()
+        self.ColumnNameTxt.addItems(plot.listPlottableColumnsInCsv(CsvFile))
+
+    def Plot(self):
+        CsvFile = str(self.CsvFileTxt.text())
+        CsvFile = CsvFile.replace(os.sep,'/')
+        plot.plotColumnByDescription(CsvFile, self.ColumnNameTxt.currentText())
         
 
 class ConfigUi(QtWidgets.QMainWindow):
