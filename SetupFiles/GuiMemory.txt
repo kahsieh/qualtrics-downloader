@@ -1,0 +1,6 @@
+[pastconfig]
+configfile =
+
+[pastOD]
+outputfolder = 
+
