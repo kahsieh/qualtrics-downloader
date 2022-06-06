@@ -86,6 +86,24 @@
         </property>
        </widget>
       </item>
+      <item row="8" column="0">
+       <widget class="QCheckBox" name="ScheduleDownloadQualtrics_checkbox">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;download the Qualtrics survey responses&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Download every 24h</string>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0">
        <widget class="QPushButton" name="CreateConfig_button">
         <property name="font">
@@ -102,7 +120,7 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="0">
+      <item row="9" column="0">
        <widget class="QPushButton" name="ChooseCsvFile_button">
         <property name="font">
          <font>
@@ -118,7 +136,7 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
+      <item row="9" column="1">
        <widget class="QLineEdit" name="CsvFileTxt">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -146,7 +164,7 @@
         </property>
        </widget>
       </item>
-      <item row="9" column="0">
+      <item row="10" column="0">
        <widget class="QPushButton" name="LoadCsvFile_button">
         <property name="font">
          <font>
@@ -162,7 +180,7 @@
         </property>
        </widget>
       </item>
-      <item row="9" column="1">
+      <item row="10" column="1">
        <widget class="QComboBox" name="ColumnNameTxt">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -178,7 +196,7 @@
         </property>
        </widget>
       </item>
-      <item row="10" column="0">
+      <item row="11" column="0">
        <widget class="QPushButton" name="Plot_button">
         <property name="font">
          <font>
@@ -308,6 +326,7 @@
   <tabstop>ChooseOutput_button</tabstop>
   <tabstop>OutputDirectoryTxt</tabstop>
   <tabstop>DownloadQualtrics_button</tabstop>
+  <tabstop>ScheduleDownloadQualtrics_checkbox</tabstop>
   <tabstop>ChooseCsvFile_button</tabstop>
   <tabstop>CsvFileTxt</tabstop>
   <tabstop>LoadCsvFile_button</tabstop>
@@ -379,6 +398,12 @@
      <y>470</y>
     </hint>
    </hints>
+  </connection>
+  <connection>
+   <sender>ScheduleDownloadQualtrics_checkbox</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ScheduleDownloadQualtrics()</slot>
   </connection>
   <connection>
    <sender>DownloadQualtrics_button</sender>

@@ -55,15 +55,15 @@ def checkprogress(downloadRequestResponse,url,headers):
     progressId = downloadRequestResponse.json()["result"]["progressId"]
     requestCheckUrl = url + progressId
     requestCheckResponse = requests.request("GET", requestCheckUrl, headers=headers)
-    fileId = requestCheckResponse.json()["result"]["fileId"]
-    try:
-       isFile = requestCheckResponse.json()["result"]["fileId"]
-    except KeyError:
-        throwerror('Download File Error', "Error: File couldn not be found:","check Survey has responses and is dowloadable")
-
-    
-    progressStatus = requestCheckResponse.json()["result"]["status"]
     requestCheckProgress = requestCheckResponse.json()["result"]["percentComplete"]
+    progressStatus = requestCheckResponse.json()["result"]["status"]
+    fileId = None
+    isFile = None
+    try:
+        fileId = requestCheckResponse.json()["result"]["fileId"]
+        isFile = requestCheckResponse.json()["result"]["fileId"]
+    except KeyError:
+        pass
     return requestCheckProgress, progressStatus, fileId, isFile
 
 

@@ -8,9 +8,9 @@ import sys, os
 import configparser
 
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QFileDialog as dlog
+from PyQt5.QtWidgets import QFileDialog as dlog, QStyle, QSystemTrayIcon
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import QEvent, Qt, QTimer, QUrl
 
 import GQDinGUI
 import plot
@@ -41,6 +41,25 @@ class PrimaryUi(QtWidgets.QMainWindow):
         #set menubar functions    
         self.actionAbout.triggered.connect(self.About)  
         self.actionFyQIDs.triggered.connect(self.FindQualtricsIDsHelp)  
+
+        # Initialize QSystemTrayIcon.
+        self.trayIcon = QSystemTrayIcon(self)
+        self.trayIcon.setIcon(
+            self.style().standardIcon(QStyle.SP_DialogSaveButton))
+        self.trayIcon.activated.connect(self.showNormal)
+
+        # Initialize QTimer.
+        self.timer=QTimer()
+        self.timer.timeout.connect(self.DownloadQualtrics)
+
+    # Minimize to tray.
+    def changeEvent(self, event):
+        if event.type() == QEvent.WindowStateChange:
+            if self.windowState() == Qt.WindowMinimized:
+                self.hide()
+                self.trayIcon.show()
+            else:
+                self.trayIcon.hide()
 
     def About(self):
         self.abwin= AboutWindow()
@@ -105,6 +124,12 @@ class PrimaryUi(QtWidgets.QMainWindow):
             config["pastOD"]["OutputFolder"] = OutputFolder
             with open(thisfolder+'/SetupFiles/GuiMemory.txt', 'w') as outputfile:
                     config.write(outputfile)    
+
+    def ScheduleDownloadQualtrics(self):
+        if self.ScheduleDownloadQualtrics_checkbox.isChecked():
+            self.timer.start(86400000)
+        else:
+            self.timer.stop()
 
     def ChooseCsvFile(self):
         if str(self.CsvFileTxt.text()):
